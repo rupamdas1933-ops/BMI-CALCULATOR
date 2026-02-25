@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BMI Calculator with Template</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .left-panel {
+            width: 40%;
+            background: url('20250709_1730_Futuristic Gaming Design_simple_compose_01jzqgvec6fn9v8dtbf2n7gc25 (1).png') no-repeat center center;
+            background-size: cover;
+        }
+        .right-panel {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+        .bmi-wrapper {
+            border: 4px solid #1E90FF;
+            padding: 20px;
+            width: 100%;
+            max-width: 700px;
+            background-color: #fff;
+        }
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #1E90FF;  
+            border-radius: 5px;
+            box-sizing: border-box;
+            width: 90%;
+            margin-bottom: 10px;
+        }
+        button {
+            background: linear-gradient(to right, #1E90FF, #00BFFF);
+            color: white;
+            font-size: 16px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(30, 144, 255, 0.3);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #00BFFF, #1E90FF);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(30, 144, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel"></div>
+        <div class="right-panel">
+            <div class="bmi-wrapper">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> BMI CALCULATOR </title>
+    <style>
+        #metric, #us {
+            display: none;
+        }
+        .gauge {
+            width: 300px;
+            height: 150px;
+            background: url('Screenshot_2025-07-08_235351-removebg-preview.png') no-repeat center;
+            background-size: cover;
+            position: relative;
+            margin: 20px auto;
+            
+        }
+
+        .needle {
+            width: 4px;
+            height: 130px;
+            background: black;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: rotate(-90deg);
+            transition: transform 0.5s ease;
+        }
+        .needle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 16px solid black;
+        }
+
+        .label-container {
+            text-align: center;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .legend div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 80px;
+        }
+
+        .color-box {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            border: 1px solid #333;
+            border-radius: 2px;
+            margin-bottom: 4px;
+        }
+
+        .range {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .red { background-color: #F9B233; }   
+        .orange { background-color: #F15A24; } 
+        .blue { background-color: #ED1C24; }   
+        .green { background-color: #4C4B1F; }  
+    </style>
+</head>
+<body>
+
+<h2>Select Measurement System</h2>
+    <select id="system" onchange="toggle()">
+        <option value="">-- Select --</option>
+        <option value="metric">Metric</option>
+        <option value="us">US</option>
+    </select>
+
+
+<script type="text/javascript">
+    function toggle(){
+        let c=document.getElementById("system").value;
+        document.getElementById("metric").style.display = (c === "metric") ? "block" : "none";
+        document.getElementById("us").style.display = (c === "us") ? "block" : "none";
+
+    }
+    function metric(){ 
+        let a=Number(document.getElementById("id1").value);
+        let h=Number(document.getElementById("id2").value);
+        let c=Number(document.getElementById("id3").value);
+        let g=document.getElementById("gender_m").value;
+        if (!a|| !h|| !c|| g === "") {
+        alert("Please fill in all fields in the Metric section.");
+        return;}
+        let h1=h/100;
+        let w=c/(h1*h1);
+        document.getElementById("id4").innerHTML=w.toFixed(2);
+        document.getElementById("id5").innerHTML=(g||"Not selected");
+        if(w<18.5){ 
+            document.getElementById("id6").innerHTML="Underweight";
+            document.getElementById("mA").style.transform = "rotate(-70deg)";}
+        else if(w>=18.5 && w<24.9){ 
+            document.getElementById("id6").innerHTML="Normal Weight";
+            document.getElementById("mA").style.transform="rotate(-20deg)";}
+        else if(w>=24.9 && w<29.9){ 
+            document.getElementById("id6").innerHTML="Overweight";
+            document.getElementById("mA").style.transform="rotate(20deg)";}
+        else{ 
+            document.getElementById("id6").innerHTML="Obese";
+            document.getElementById("mA").style.transform="rotate(70deg)";}
+    }
+    function US(){
+        let a=Number(document.getElementById("id7").value);
+        let f=Number(document.getElementById("id8").value);
+        let i=Number(document.getElementById("id9").value);
+        let d=Number(document.getElementById("id10").value);
+        let g=document.getElementById("gender_u").value;
+        if (!a|| !f || (!i&&i!==0) || !d || g=== "") {
+        alert("Please fill in all fields in the US section.");
+        return;}
+        let h=(f*0.3048)+(i*0.0254);
+        let e=d*0.45359237;
+        let w=e/(h*h);
+        document.getElementById("id11").innerHTML=w.toFixed(2);
+        document.getElementById("id12").innerHTML=(g||"Not selected");
+        if(w<18.5){ 
+            document.getElementById("id13").innerHTML="Underweight";
+            document.getElementById("uA").style.transform="rotate(-70deg)";}
+        else if(w>=18.5 && w<24.9){ 
+            document.getElementById("id13").innerHTML="Normal Weight";
+            document.getElementById("uA").style.transform="rotate(-20deg)";}
+        else if(w>=24.9 && w<29.9){ 
+            document.getElementById("id13").innerHTML="Overweight";
+            document.getElementById("uA").style.transform="rotate(20deg)";}
+        else{ 
+            document.getElementById("id13").innerHTML="Obese";
+            document.getElementById("uA").style.transform="rotate(70deg)";}
+
+
+    }   
+    
+</script>
+    
+<table  style="width: 100%; margin-top:30px;">
+    <tr>
+        <td id="metric">
+        <h2>Metric Value</h2>
+        <p>
+            <label> AGE :</label><br>
+            <input id="id1" type="number" min="1" max="120" placeholder="years"> <br><br>
+
+            <label> HEIGHT :</label><br>
+            <input id="id2" size="5" placeholder="cm"><br><br>
+
+            <label> WEIGHT :<br>
+            <input id="id3" size="5" placeholder="kg"><br><br>
+
+            <label>GENDER:</label><br>
+            <select id="gender_m">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+            </select><br><br>
+        <button onclick="metric()">CHECK</button><br><br></p>
+        <div class="gauge">
+            <div id="mA" class="needle"></div>
+        </div>
+        <div class="legend">
+            <div><span class="color-box red"></span> Underweight<br><span class="range">(BMI &lt; 18.5)</span></div>
+            <div><span class="color-box orange"></span> Normal<br><span class="range">(18.5 - 24.9)</span></div>
+            <div><span class="color-box blue"></span> Overweight<br><span class="range">(25 - 29.9)</span></div>
+            <div><span class="color-box green"></span> Obese<br><span class="range">(BMI ≥ 30)</span></div>
+        </div>
+        <div class="label-container">
+        <h3 id= "id4"></h3>
+        <h3 id="id5"></h3>
+        <h3 id="id6"></h3></div></td>
+    </tr>
+
+<tr>
+        <td id="us">
+        <h2>US Value</h2>
+        <p>
+            <label> AGE :</label><br>
+            <input id="id7" type="number" min="1" max="120" placeholder="years"> <br><br>
+
+            <label> HEIGHT :</label><br>
+            <input id="id8" size="5" placeholder="ft"> <input id="id9" size="5" placeholder="in"><br><br>
+
+            <label> WEIGHT :<br>
+            <input id="id10" size="5" placeholder="lb"><br><br>
+
+            <label>GENDER:</label><br>
+            <select id="gender_u">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+            </select><br><br>
+        <button onclick="US()">CHECK</button><br><br></p>
+        <div class="gauge">
+            <div id="uA" class="needle"></div>
+        </div>
+        <div class="label-container">
+        <h3 id= "id11"></h3>
+        <h3 id="id12"></h3>
+        <h3 id="id13"></h3></div></td>
+    </tr>
+</table>
+</body>
+</html>
+
